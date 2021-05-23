@@ -1,0 +1,45 @@
+{
+  "paths": [
+    {
+      "name": "/forensicsrangeapi",
+      "lambdaFunction": "addUserToGroup",
+      "privacy": {
+        "protected": true,
+        "auth": [
+          "/POST",
+          "/GET",
+          "/PUT",
+          "/PATCH",
+          "/DELETE"
+        ],
+        "unauth": [
+          "/GET"
+        ]
+      },
+      "policyResourceName": "/forensicsrangeapi"
+    }
+  ],
+  "resourceName": "forensicsrangeapi",
+  "apiName": "forensicsrangeapi",
+  "functionArns": [
+    {
+      "lambdaFunction": "addUserToGroup"
+    }
+  ],
+  "privacy": {
+    "auth": 1,
+    "unauth": 1,
+    "authRoleName": "amplify-forensicsrange-dev-141930-authRole",
+    "unAuthRoleName": "amplify-forensicsrange-dev-141930-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "addUserToGroup",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    }
+  ]
+}

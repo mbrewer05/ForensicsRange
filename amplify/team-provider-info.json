@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-forensicsrange-dev-141930-authRole",
+      "UnauthRoleArn": "arn:aws:iam::415663925972:role/amplify-forensicsrange-dev-141930-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::415663925972:role/amplify-forensicsrange-dev-141930-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
+      "UnauthRoleName": "amplify-forensicsrange-dev-141930-unauthRole",
+      "StackName": "amplify-forensicsrange-dev-141930",
+      "StackId": "arn:aws:cloudformation:us-west-2:415663925972:stack/amplify-forensicsrange-dev-141930/911dc990-bc0c-11eb-813f-06cf5b1bd0e1",
+      "AmplifyAppId": "d38zrw9uxrbnia"
+    },
+    "categories": {
+      "auth": {
+        "forensicsrange2b6eb6da": {}
+      },
+      "function": {
+        "addUserToGroup": {
+          "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
+          "s3Key": "amplify-builds/addUserToGroup-4d7266552b744871334f-build.zip"
+        }
+      }
+    }
+  }
+}
