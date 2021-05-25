@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Amplify, {API, Auth} from 'aws-amplify'
+import {API, Auth} from 'aws-amplify'
 import { withAuthenticator } from '@aws-amplify/ui-react'
 
 function App() {
@@ -17,6 +17,21 @@ function App() {
     console.log({ data })
   }
 
+  async function callTest() {
+    const user = await Auth.currentAuthenticatedUser()
+    const token = user.signInUserSession.idToken.jwtToken
+    const group = user.signInUserSession.idToken.payload['cognito:groups']
+    console.log({ group })
+    console.log({ token })
+
+    const requestInfo = {
+      headers: { Authorization: token }
+    }
+
+    const data = await API.get('forensicsrangeapi', '/test', requestInfo)
+    console.log({ data })
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -25,6 +40,7 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <button onClick={callHelloWorld}> Call Hello World </button>
+        <button onClick={callTest}> Call Test Message </button>
       </header>
     </div>
   );
