@@ -17,19 +17,6 @@ function App() {
     console.log({ data })
   }
 
-  async function callTestMessage() {
-    const user = await Auth.currentAuthenticatedUser()
-    const token = user.signInUserSession.idToken.jwtToken
-    console.log({ token })
-
-    const requestInfo = {
-      headers: { Authorization: token }
-    }
-
-    const data = await API.get('forensicsrangeapi', '/test', requestInfo)
-    console.log({ data })
-  }
-
   return (
     <div className="App">
       <header className="App-header">
@@ -38,7 +25,6 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <button onClick={callHelloWorld}> Call Hello World </button>
-        <button onClick={callTestMessage}> Call Test Message </button>
       </header>
     </div>
   );
