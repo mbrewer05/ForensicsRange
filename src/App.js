@@ -1,37 +1,97 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import {API, Auth} from 'aws-amplify'
-import { withAuthenticator } from '@aws-amplify/ui-react'
+import Amplify from 'aws-amplify';
+import awsconfig from './aws-exports';
+
+import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+//Web Pages
+import Home from './pages/Home.js';
+import About from './pages/About.js';
+import ForensicsPractice from './pages/ForensicsPractice.js';
+import AutopsyInstances from './pages/AutopsyInstances.js';
+import ForensicsImageStore from './pages/ForensicsImageStore.js';
+import Scenario1 from './pages/Scenario1.js';
+import Scenario2 from './pages/Scenario2.js';
+import Scenario3 from './pages/Scenario3.js';
+import GettingStarted from './pages/GettingStarted.js';
+
+Amplify.configure(awsconfig);
 
 function App() {
-  async function callHelloWorld() {
-    const user = await Auth.currentAuthenticatedUser()
-    const token = user.signInUserSession.idToken.jwtToken
-    const group = user.signInUserSession.idToken.payload['cognito:groups'][0]
-    const email = user.signInUserSession.idToken.payload.email
-    console.log({ email })
-    console.log({ group })
-    console.log({ token })
+    return (
+    <BrowserRouter>
+        <div className="App">
+            <header className="App-header">
+                <h1>Senior Project Website</h1>
+            </header>
+        <div class="navbar">
+            <a href="/">Home</a>
 
-    const requestInfo = {
-      headers: { Authorization: token }
-    }
+            <div class="dropdown" >  {/* dropdown menu for forensics Practice */}
+                <button class="dropbtn"> Forensics Practice 
+                     <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/scenario1">Scenario 1</a>
+                    <a href="/scenario2">Scenario 2</a>
+                    <a href="/scenario3">Scenario 3</a>
+                </div>
+            </div>
 
-    const data = await API.get('forensicsrangeapi', '/requestInstInfo', requestInfo)
-    console.log({ data })
-  }
+            <a href="/gettingStarted">Getting Started</a>
+            <a href="/autopsyInstances">Autopsy Instances</a>
+            <a href="/forensicsImageStore">Forensic Image Store</a>
+            <a href="/about">About</a>
+        </div>
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <button onClick={callHelloWorld}> Call Hello World </button>
-      </header>
-    </div>
-  );
+        {/* components below, HTML above */}
+        <Switch>
+            <Route exact path="/">
+                <Home />
+            </Route>
+
+            <Route path="/gettingStarted">
+                <GettingStarted />
+            </Route>
+
+            <Route path="/forensicsPractice">  {/* Doesn't actually link to it cause of button above */}
+                <ForensicsPractice />
+            </Route>
+
+            <Route path="/scenario1">
+                <Scenario1 />
+            </Route>
+
+            <Route path="/scenario2">
+                <Scenario2 />
+            </Route>
+
+            <Route path="/scenario3">
+                <Scenario3 />
+            </Route>
+
+            <Route path="/autopsyInstances">
+                <AutopsyInstances />
+            </Route>
+
+
+            <Route path="/forensicsImageStore">
+                <ForensicsImageStore />
+            </Route>
+
+            <Route path="/about">
+                <About />
+            </Route>
+        </Switch>
+
+        <AmplifySignOut />
+        </div>
+    </BrowserRouter>
+
+    );
 }
 
-export default withAuthenticator(App);
+export default App; /* withAuthenticator(App); */
+/* Replace 'App' above with what is in comments to have Authentication working again */
