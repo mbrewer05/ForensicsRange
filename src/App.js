@@ -7,20 +7,9 @@ function App() {
   async function callHelloWorld() {
     const user = await Auth.currentAuthenticatedUser()
     const token = user.signInUserSession.idToken.jwtToken
-    console.log({ token })
-
-    const requestInfo = {
-      headers: { Authorization: token }
-    }
-
-    const data = await API.get('forensicsrangeapi', '/hello', requestInfo)
-    console.log({ data })
-  }
-
-  async function callTest() {
-    const user = await Auth.currentAuthenticatedUser()
-    const token = user.signInUserSession.idToken.jwtToken
-    const group = user.signInUserSession.idToken.payload['cognito:groups']
+    const group = user.signInUserSession.idToken.payload['cognito:groups'][0]
+    const email = user.signInUserSession.idToken.payload.email
+    console.log({ email })
     console.log({ group })
     console.log({ token })
 
@@ -28,7 +17,7 @@ function App() {
       headers: { Authorization: token }
     }
 
-    const data = await API.get('forensicsrangeapi', '/test', requestInfo)
+    const data = await API.get('forensicsrangeapi', '/requestInstInfo', requestInfo)
     console.log({ data })
   }
 
@@ -40,7 +29,6 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <button onClick={callHelloWorld}> Call Hello World </button>
-        <button onClick={callTest}> Call Test Message </button>
       </header>
     </div>
   );
