@@ -44,7 +44,7 @@ class Scenario1 extends React.Component {
       const requestInfo = {
         headers: {}
       }
-      const data = await API.get('forensicsrangeapi', '/requestInstInfo', requestInfo)
+      const data = await API.get('forensicsrangeapi', '/testHello', requestInfo)
       console.log({ data })
     }
 

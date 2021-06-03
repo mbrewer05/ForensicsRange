@@ -93,5 +93,5 @@ function App() {
     );
 }
 
-export default App; /* withAuthenticator(App); */
+export default withAuthenticator(App);
 /* Replace 'App' above with what is in comments to have Authentication working again */
