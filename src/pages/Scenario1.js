@@ -1,7 +1,7 @@
 // pages/Scenario1.js
 
 import React from "react";
-import API from 'aws-amplify'
+import { API, Auth } from 'aws-amplify';
 import Unity, { UnityContext } from "react-unity-webgl";
 
 // This webpage is structured as a class while most are const
@@ -40,13 +40,28 @@ class Scenario1 extends React.Component {
 }
   
   render() {
-    async function callHelloWorld() {
+    async function launchEC2() {
+      const user = await Auth.currentAuthenticatedUser()
+      const token = user.signInUserSession.idToken.jwtToken
+
       const requestInfo = {
-        headers: {}
+        headers: { Authorization: token }
       }
-      const data = await API.get('forensicsrangeapi', '/testHello', requestInfo)
-      console.log({ data })
+        const data = await API.get('forensicsrangeapi', '/launchInst', requestInfo)
+        console.log({ data })
     }
+    async function requestInst() {
+      const user = await Auth.currentAuthenticatedUser()
+      const token = user.signInUserSession.idToken.jwtToken
+
+      const requestInfo = {
+        headers: { Authorization: token }
+      }
+        const data = await API.get('forensicsrangeapi', '/requestInst', requestInfo)
+        console.log({ data })
+    }
+
+
 
     return (
       <div>
@@ -55,7 +70,7 @@ class Scenario1 extends React.Component {
         <h2 className= "title2">Case Description:</h2>
         <p className= "paragraph"> As the head of the Forensics Unit at SeniorProject PD, you have been <br></br>
                                    granted a search warrant to investigate claims that illegal activities are <br></br>
-                                   occuring at a Mr. Sean Jones's residence. With your investigative <br></br> 
+                                   occuring at a Mr. Sean Jones's residence. With your investigative <br></br>
                                    knowledge findout if he is up to anything and if so make sure to get all <br></br>
                                    the evidence there is to bring this criminal to justince.
         </p>
@@ -64,7 +79,10 @@ class Scenario1 extends React.Component {
     <div> Figure out how to get these from Unity
         <p> Have the USB: {this.state.getUSB.toString()}</p>
         <p> Have the Post-It Note: {this.state.getPostItNote.toString()} </p>
-        <button onClick={callHelloWorld}> Launch Instance </button>
+        <button onClick={launchEC2}> Launch Instance </button>
+        <p></p>
+        <button onClick={requestInst}> Get Instance Details </button>
+        <p></p>
     </div> 
 
     
