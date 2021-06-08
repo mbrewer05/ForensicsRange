@@ -11,7 +11,13 @@ class Scenario1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = {getUSB: false,
-      getPostItNote: false
+      getPostItNote: false,
+      usbSet: false,
+      postItSet: false,
+      ip: "NA",
+      username: "Administrator",
+      password: "NA",
+      ipVal: "Insert IP From Alert Here!"
   };
 
   // Unity instance
@@ -40,6 +46,7 @@ class Scenario1 extends React.Component {
 }
   
   render() {
+
     async function launchEC2() {
       const user = await Auth.currentAuthenticatedUser()
       const token = user.signInUserSession.idToken.jwtToken
@@ -50,6 +57,7 @@ class Scenario1 extends React.Component {
         const data = await API.get('forensicsrangeapi', '/launchInst', requestInfo)
         console.log({ data })
     }
+
     async function requestInst() {
       const user = await Auth.currentAuthenticatedUser()
       const token = user.signInUserSession.idToken.jwtToken
@@ -58,8 +66,12 @@ class Scenario1 extends React.Component {
         headers: { Authorization: token }
       }
         const data = await API.get('forensicsrangeapi', '/requestInst', requestInfo)
-        console.log({ data })
-    }
+        console.log( data )
+        alert("DOCUMENT Instance IP: " + data.ip)
+        alert("DOCUMENT Username: Administrator")
+        alert("DOCUMENT Password: " + data.password)
+    };
+
     async function stopInstance() {
       const user = await Auth.currentAuthenticatedUser()
       const token = user.signInUserSession.idToken.jwtToken
@@ -91,6 +103,14 @@ class Scenario1 extends React.Component {
         console.log({ data })
     }
 
+    if (this.state.getUSB && !(this.state.usbSet)) {
+      this.setState({ usbSet: true})
+      foundUSB()
+    }
+    if (this.state.getPostItNote && !(this.state.postItSet)) {
+      this.setState({ postItSet: true})
+      foundPostIt()
+    }
 
 
     return (
@@ -102,22 +122,13 @@ class Scenario1 extends React.Component {
                                    granted a search warrant to investigate claims that illegal activities are <br></br>
                                    occuring at a Mr. Sean Jones's residence. With your investigative <br></br>
                                    knowledge findout if he is up to anything and if so make sure to get all <br></br>
-                                   the evidence there is to bring this criminal to justince.
+                                   the evidence there is to bring this criminal to justice.
         </p>
-    </div>
-
-    <div> Figure out how to get these from Unity
-        <p> Have the USB: {this.state.getUSB.toString()}</p>
-        <p> Have the Post-It Note: {this.state.getPostItNote.toString()} </p>
         <button onClick={launchEC2}> Launch Instance </button>
         <p></p>
         <button onClick={requestInst}> Get Instance Details </button>
         <p></p>
         <button onClick={stopInstance}> Stop Instance </button>
-        <p></p>
-        <button onClick={foundPostIt}> I found the Post it! </button>
-        <p></p>
-        <button onClick={foundUSB}> I found the USB! </button>
         <p></p>
     </div> 
 
