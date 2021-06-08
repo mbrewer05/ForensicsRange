@@ -56,6 +56,7 @@ class Scenario1 extends React.Component {
       }
         const data = await API.get('forensicsrangeapi', '/launchInst', requestInfo)
         console.log({ data })
+        alert("Instance is launching! Please wait 4 minutes before requesting instance info")
     }
 
     async function requestInst() {
@@ -81,6 +82,7 @@ class Scenario1 extends React.Component {
       }
         const data = await API.get('forensicsrangeapi', '/stopInst', requestInfo)
         console.log({ data })
+        alert("Terminating Instance!")
     }
     async function foundPostIt() {
       const user = await Auth.currentAuthenticatedUser()
