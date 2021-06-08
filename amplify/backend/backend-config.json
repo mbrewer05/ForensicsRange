@@ -8,7 +8,27 @@
     }
   },
   "function": {
-    "addUserToGroup": {
+    "launchInstanceFromTemplate": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "requestInstInfo": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "updatePostIt": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "updateUSB": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "stopInstanceforUser": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -21,7 +41,39 @@
       "dependsOn": [
         {
           "category": "function",
-          "resourceName": "addUserToGroup",
+          "resourceName": "launchInstanceFromTemplate",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "requestInstInfo",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "updatePostIt",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "updateUSB",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        },
+        {
+          "category": "function",
+          "resourceName": "stopInstanceforUser",
           "attributes": [
             "Name",
             "Arn"

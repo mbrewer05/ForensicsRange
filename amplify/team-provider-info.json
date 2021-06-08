@@ -13,12 +13,29 @@
     },
     "categories": {
       "auth": {
-        "forensicsrange2b6eb6da": {}
+        "forensicsrange2b6eb6da": {},
+        "userPoolGroups": {}
       },
       "function": {
-        "addUserToGroup": {
+        "requestInstInfo": {
           "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
-          "s3Key": "amplify-builds/addUserToGroup-4d7266552b744871334f-build.zip"
+          "s3Key": "amplify-builds/requestInstInfo-42626d526c45436c465a-build.zip"
+        },
+        "launchInstanceFromTemplate": {
+          "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
+          "s3Key": "amplify-builds/launchInstanceFromTemplate-534a4a647777796e346b-build.zip"
+        },
+        "updateUSB": {
+          "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
+          "s3Key": "amplify-builds/updateUSB-546d304b62526c476974-build.zip"
+        },
+        "updatePostIt": {
+          "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
+          "s3Key": "amplify-builds/updatePostIt-486437416b556d626539-build.zip"
+        },
+        "stopInstanceforUser": {
+          "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
+          "s3Key": "amplify-builds/stopInstanceforUser-4941417838663636455a-build.zip"
         }
       }
     }

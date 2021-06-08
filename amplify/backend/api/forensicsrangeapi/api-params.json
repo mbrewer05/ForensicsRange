@@ -1,45 +1,112 @@
 {
-  "paths": [
-    {
-      "name": "/forensicsrangeapi",
-      "lambdaFunction": "addUserToGroup",
-      "privacy": {
-        "protected": true,
-        "auth": [
-          "/POST",
-          "/GET",
-          "/PUT",
-          "/PATCH",
-          "/DELETE"
-        ],
-        "unauth": [
-          "/GET"
-        ]
-      },
-      "policyResourceName": "/forensicsrangeapi"
-    }
-  ],
-  "resourceName": "forensicsrangeapi",
-  "apiName": "forensicsrangeapi",
-  "functionArns": [
-    {
-      "lambdaFunction": "addUserToGroup"
-    }
-  ],
-  "privacy": {
-    "auth": 1,
-    "unauth": 1,
-    "authRoleName": "amplify-forensicsrange-dev-141930-authRole",
-    "unAuthRoleName": "amplify-forensicsrange-dev-141930-unauthRole"
-  },
-  "dependsOn": [
-    {
-      "category": "function",
-      "resourceName": "addUserToGroup",
-      "attributes": [
-        "Name",
-        "Arn"
-      ]
-    }
-  ]
+    "paths": [
+        {
+            "name": "/launchInst",
+            "lambdaFunction": "launchInstanceFromTemplate",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/launchInst"
+        },
+        {
+            "name": "/requestInst",
+            "lambdaFunction": "requestInstInfo",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/requestInst"
+        },
+        {
+            "name": "/setPostIt",
+            "lambdaFunction": "updatePostIt",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/setPostIt"
+        },
+        {
+            "name": "/setUSB",
+            "lambdaFunction": "updateUSB",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/setUSB"
+        },
+        {
+            "name": "/stopInst",
+            "lambdaFunction": "stopInstanceforUser",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/stopInst"
+        }
+    ],
+    "resourceName": "forensicsrangeapi",
+    "apiName": "forensicsrangeapi",
+    "functionArns": [
+        {
+            "lambdaFunction": "launchInstanceFromTemplate"
+        },
+        {
+            "lambdaFunction": "requestInstInfo"
+        },
+        {
+            "lambdaFunction": "updatePostIt"
+        },
+        {
+            "lambdaFunction": "updateUSB"
+        },
+        {
+            "lambdaFunction": "stopInstanceforUser"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-forensicsrange-dev-141930-authRole",
+        "unAuthRoleName": "amplify-forensicsrange-dev-141930-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "launchInstanceFromTemplate",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "requestInstInfo",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "updatePostIt",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "updateUSB",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        },
+        {
+            "category": "function",
+            "resourceName": "stopInstanceforUser",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "486941c0"
 }

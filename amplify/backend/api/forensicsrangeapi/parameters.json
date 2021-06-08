@@ -1,1 +1,26 @@
-{}
+{
+    "functionlaunchInstanceFromTemplateArn": { 
+        "Ref": "functionlaunchInstanceFromTemplateArn" 
+    },
+    "functionrequestInstInfoArn": { 
+        "Ref": "functionrequestInstInfoArn" 
+    },
+    "functionrequestInstInfoName": { 
+        "Ref": "functionrequestInstInfoName" 
+    },
+    "functionlaunchInstanceFromTemplateName": { 
+        "Ref": "functionlaunchInstanceFromTemplateName" 
+    },
+    "functionupdateUSBArn": { 
+        "Ref": "functionupdateUSBArn" 
+    },
+    "functionupdatePostItArn": { 
+        "Ref": "functionupdatePostItArn" 
+    },
+    "functionupdatePostItName": { 
+        "Ref": "functionupdatePostItName" 
+    },
+    "functionupdateUSBName": { 
+        "Ref": "functionupdateUSBName" 
+    }
+}
