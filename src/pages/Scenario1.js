@@ -60,6 +60,36 @@ class Scenario1 extends React.Component {
         const data = await API.get('forensicsrangeapi', '/requestInst', requestInfo)
         console.log({ data })
     }
+    async function stopInstance() {
+      const user = await Auth.currentAuthenticatedUser()
+      const token = user.signInUserSession.idToken.jwtToken
+
+      const requestInfo = {
+        headers: { Authorization: token }
+      }
+        const data = await API.get('forensicsrangeapi', '/stopInst', requestInfo)
+        console.log({ data })
+    }
+    async function foundPostIt() {
+      const user = await Auth.currentAuthenticatedUser()
+      const token = user.signInUserSession.idToken.jwtToken
+
+      const requestInfo = {
+        headers: { Authorization: token }
+      }
+        const data = await API.get('forensicsrangeapi', '/setPostIt', requestInfo)
+        console.log({ data })
+    }
+    async function foundUSB() {
+      const user = await Auth.currentAuthenticatedUser()
+      const token = user.signInUserSession.idToken.jwtToken
+
+      const requestInfo = {
+        headers: { Authorization: token }
+      }
+        const data = await API.get('forensicsrangeapi', '/setUSB', requestInfo)
+        console.log({ data })
+    }
 
 
 
@@ -82,6 +112,12 @@ class Scenario1 extends React.Component {
         <button onClick={launchEC2}> Launch Instance </button>
         <p></p>
         <button onClick={requestInst}> Get Instance Details </button>
+        <p></p>
+        <button onClick={stopInstance}> Stop Instance </button>
+        <p></p>
+        <button onClick={foundPostIt}> I found the Post it! </button>
+        <p></p>
+        <button onClick={foundUSB}> I found the USB! </button>
         <p></p>
     </div> 
 
