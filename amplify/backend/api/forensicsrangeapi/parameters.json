@@ -14,6 +14,12 @@
     "functionupdateUSBArn": { 
         "Ref": "functionupdateUSBArn" 
     },
+    "functionstopInstanceforUserArn": { 
+        "Ref": "functionstopInstanceforUserArn" 
+    },
+    "functionstopInstanceforUserName": { 
+        "Ref": "functionstopInstanceforUserName" 
+    },
     "functionupdatePostItArn": { 
         "Ref": "functionupdatePostItArn" 
     },
