@@ -69,8 +69,8 @@ class Scenario1 extends React.Component {
         const data = await API.get('forensicsrangeapi', '/requestInst', requestInfo)
         console.log( data )
         alert("PLEASE DOCUMENT Instance IP: " + data.ip)
-        alert("DOCUMENT Username: Administrator")
-        alert("DOCUMENT Password: " + data.password)
+        alert("Change RDP Setings for Username: Administrator")
+        alert("Instance Password: " + data.password)
     };
 
     async function stopInstance() {
