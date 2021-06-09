@@ -68,7 +68,7 @@ class Scenario1 extends React.Component {
       }
         const data = await API.get('forensicsrangeapi', '/requestInst', requestInfo)
         console.log( data )
-        alert("DOCUMENT Instance IP: " + data.ip)
+        alert("PLEASE DOCUMENT Instance IP: " + data.ip)
         alert("DOCUMENT Username: Administrator")
         alert("DOCUMENT Password: " + data.password)
     };
