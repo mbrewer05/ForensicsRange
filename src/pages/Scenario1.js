@@ -114,6 +114,67 @@ class Scenario1 extends React.Component {
       foundPostIt()
     }
 
+    // progress bar logic
+    var i = 0;
+    function move() {
+      if (i === 0) {
+        i = 1;
+        var elem = document.getElementById("myProgressBar");
+        var width = 1;
+        // 120 seconds = 2 minutes which is how long it takes to boot an instance
+        var seconds = 120;
+        var factor = 10;
+        var id = setInterval(frame, seconds*factor); 
+        function frame() {
+          if (width >= 100) {
+            clearInterval(id);
+            i = 0;
+
+            elem.innerHTML = "Instance Ready!";
+            
+            // enable two other buttons
+            var detail = document.getElementsByClassName('detailBtn')[0];
+            detail.style.display = "inline-block";
+            var stop = document.getElementsByClassName('stopBtn')[0];
+            stop.style.display = "inline-block";
+
+            // disable start button
+            var start = document.getElementsByClassName('startBtn')[0];
+            start.style.display = "none";
+            
+          } else {
+            width++;
+            elem.style.width = width + "%";
+            elem.innerHTML = width + "%";
+          }
+        }
+      }
+    }
+
+    // makes progress bar visible and calls progress bar function to move it
+    function showProgress() {
+      launchEC2();
+      document.getElementById('myProgress').style.display = "inline-block";
+      document.getElementById('myProgressBar').style.display = "block";
+      move();
+    }
+
+    function reset() {
+      stopInstance();
+      // enable two other buttons
+      var detail = document.getElementsByClassName('detailBtn')[0];
+      detail.style.display = "none";
+      var stop = document.getElementsByClassName('stopBtn')[0];
+      stop.style.display = "none";
+
+      // disable start button
+      var start = document.getElementsByClassName('startBtn')[0];
+      start.style.display = "inline-block";
+
+      document.getElementById('myProgress').style.display = "none";
+      document.getElementById('myProgressBar').style.display = "none";
+    }
+
 
     return (
       <div>
@@ -126,22 +187,23 @@ class Scenario1 extends React.Component {
                                    knowledge findout if he is up to anything and if so make sure to get all <br></br>
                                    the evidence there is to bring this criminal to justice.
         </p>
-        <button onClick={launchEC2}> Launch Instance </button>
-        <p></p>
-        <button onClick={requestInst}> Get Instance Details </button>
-        <p></p>
-        <button onClick={stopInstance}> Stop Instance </button>
-        <p></p>
     </div> 
-
-    
-    
-    
     <Unity
       unityContext={this.unityContext}
       matchWebGLToCanvasSize={true}
       style={{ width: "960px", height: "540px" }}
     />
+    <div>
+    <button className="startBtn"  onClick= {showProgress}>Start Instance </button>
+    <button className="detailBtn" style={{display: "none"}} onClick={requestInst}>Get Instance Details </button>
+    <button className="stopBtn" style={{display: "none"}} onClick={reset}>Stop Instance </button>
+      
+    </div>
+    
+    
+    <div id="myProgress" style={{display: "none"}}>
+      <div id="myProgressBar" style={{display: "none"}}>0%</div>
+    </div> 
   </div>
     );
   }

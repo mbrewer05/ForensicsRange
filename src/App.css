@@ -62,6 +62,111 @@
   line-height: 2;
 }
 
+.startBtn {
+  margin: 20px;
+  display: inline-block;
+  padding: 15px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: green;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.startBtn:hover {background-color: #2c662e}
+
+.startBtn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.startBtn:disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.detailBtn {
+  margin: 20px;
+  display: inline-block;
+  padding: 15px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: blue;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.detailBtn:hover {background-color: #003e90}
+
+.detailBtn:active {
+  background-color: #003e90;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.detailBtn:disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.stopBtn {
+  margin: 20px;
+  display: inline-block;
+  padding: 15px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: red;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.stopBtn:hover {background-color: #b13027}
+
+.stopBtn:active {
+  background-color:  #b13027;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.stopBtn:disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* progress bar css */
+#myProgress {
+  display: inline-block;
+  margin: 10px;
+  width: 45%;
+  background-color: grey;
+}
+
+#myProgressBar {
+  width: 0%;
+  height: 30px;
+  background-color: green;
+  text-align: center; /* To center it horizontally (if you want) */
+  line-height: 30px; /* To center it vertically */
+  color: white; 
+}
+/* end progress bar css */
+
 /* Style the top navigation bar */
 .navbar {
   overflow: hidden;
