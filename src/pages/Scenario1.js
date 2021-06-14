@@ -161,13 +161,13 @@ class Scenario1 extends React.Component {
 
     function reset() {
       stopInstance();
-      // enable two other buttons
+      // disable two other buttons
       var detail = document.getElementsByClassName('detailBtn')[0];
       detail.style.display = "none";
       var stop = document.getElementsByClassName('stopBtn')[0];
       stop.style.display = "none";
 
-      // disable start button
+      // enable start button
       var start = document.getElementsByClassName('startBtn')[0];
       start.style.display = "inline-block";
 
