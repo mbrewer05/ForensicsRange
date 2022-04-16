@@ -19,23 +19,23 @@
       "function": {
         "requestInstInfo": {
           "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
-          "s3Key": "amplify-builds/requestInstInfo-42626d526c45436c465a-build.zip"
+          "s3Key": "amplify-builds/requestInstInfo-46747a78585447544777-build.zip"
         },
         "launchInstanceFromTemplate": {
           "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
-          "s3Key": "amplify-builds/launchInstanceFromTemplate-534a4a647777796e346b-build.zip"
+          "s3Key": "amplify-builds/launchInstanceFromTemplate-786370634e6774665a7a-build.zip"
         },
         "updateUSB": {
           "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
-          "s3Key": "amplify-builds/updateUSB-546d304b62526c476974-build.zip"
+          "s3Key": "amplify-builds/updateUSB-4130516f666e54484950-build.zip"
         },
         "updatePostIt": {
           "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
-          "s3Key": "amplify-builds/updatePostIt-486437416b556d626539-build.zip"
+          "s3Key": "amplify-builds/updatePostIt-344e7a35703556466870-build.zip"
         },
         "stopInstanceforUser": {
           "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
-          "s3Key": "amplify-builds/stopInstanceforUser-4941417838663636455a-build.zip"
+          "s3Key": "amplify-builds/stopInstanceforUser-762f38686955362b2f52-build.zip"
         }
       }
     }

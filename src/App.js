@@ -16,6 +16,7 @@ import Scenario1 from './pages/Scenario1.js';
 import Scenario2 from './pages/Scenario2.js';
 import Scenario3 from './pages/Scenario3.js';
 import GettingStarted from './pages/GettingStarted.js';
+import Progress from './pages/Progress.js';
 
 Amplify.configure(awsconfig);
 
@@ -39,7 +40,7 @@ function App() {
                     <a href="/scenario3">Scenario 3</a>
                 </div>
             </div>
-
+            <a href="/progress">Progress</a>
             <a href="/gettingStarted">Getting Started</a>
             <a href="/autopsyInstances">Autopsy Instances</a>
             <a href="/forensicsImageStore">Forensic Image Store</a>
@@ -70,6 +71,10 @@ function App() {
 
             <Route path="/scenario3">
                 <Scenario3 />
+            </Route>
+
+            <Route path='/progress'>
+                <Progress />
             </Route>
 
             <Route path="/autopsyInstances">
