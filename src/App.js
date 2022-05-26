@@ -1,6 +1,6 @@
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import './App.css';
-import Amplify from 'aws-amplify';
+import { API, Auth, Amplify } from 'aws-amplify';
 import awsconfig from './aws-exports';
 
 import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
@@ -18,15 +18,51 @@ import Scenario3 from './pages/Scenario3.js';
 import GettingStarted from './pages/GettingStarted.js';
 import Progress from './pages/Progress.js';
 
+//warning-sign
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 Amplify.configure(awsconfig);
 
 function App() {
+    const [authenicated, setAuthenicated] = useState(false);
+    const [show, setShow] = useState(true);
+
+    useEffect(() => {
+        Auth.currentAuthenticatedUser().then(function(user){
+            const token = user.signInUserSession.idToken.jwtToken
+    
+            const requestInfo = {
+            headers: { Authorization: token }
+            }
+            API.get('forensicsrangeapi', '/checkCurrentUser', requestInfo).then(function(data){
+                console.log( data )
+                if (data.authorization_status === "true"){
+                    setAuthenicated(true);
+                }
+            });
+        });
+    }, []);
+
     return (
     <BrowserRouter>
         <div className="App">
             <header className="App-header">
                 <h1>Senior Project Website</h1>
             </header>
+            {!authenicated&show ? <Alert variant='danger' style={{ margin:'0px' }}>
+                    <Alert.Heading>Warning!!!</Alert.Heading>
+                <p>
+                You are not authorized for full funtionality. Please check in with an admininstrator. 
+                </p>
+                <hr />
+                <div className="d-flex justify-content-end">
+                <Button onClick={() => setShow(false)} variant="outline-danger">
+                    Close
+                </Button>
+                </div>
+            </Alert> : null}
         <div class="navbar">
             <a href="/">Home</a>
 
