@@ -27,7 +27,7 @@ Amplify.configure(awsconfig);
 
 function App() {
     const [authenicated, setAuthenicated] = useState(false);
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
         Auth.currentAuthenticatedUser().then(function(user){
@@ -43,6 +43,7 @@ function App() {
                 }
             });
         });
+        setShow(true);
     }, []);
 
     return (
