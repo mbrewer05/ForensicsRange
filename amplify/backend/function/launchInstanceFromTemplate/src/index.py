@@ -61,7 +61,10 @@ def handler(event, context):
         MinCount=1,
         LaunchTemplate={
             'LaunchTemplateName': template,
-            'Version': VERSION
+            'Version': VERSION,
+        },
+        IamInstanceProfile={
+            'Arn': 'arn:aws:iam::415663925972:instance-profile/EC2InstanceProfileForSSM'
         }
     )
     

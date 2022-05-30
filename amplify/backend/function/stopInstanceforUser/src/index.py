@@ -34,7 +34,7 @@ def handler(event, context):
               'Access-Control-Allow-Origin': '*',
               'Access-Control-Allow-Methods': 'GET, PUT, POST, OPTIONS'
           },
-          'body': response
+          'body': json.dumps(response)
         }
     else:
         return {

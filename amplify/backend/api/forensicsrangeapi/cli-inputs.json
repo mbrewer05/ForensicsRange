@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "paths": {
+    "/launchInst": {
+      "permissions": {
+        "setting": "open"
+      },
+      "lambdaFunction": "launchInstanceFromTemplate"
+    },
+    "/requestInst": {
+      "permissions": {
+        "setting": "open"
+      },
+      "lambdaFunction": "requestInstInfo"
+    },
+    "/setPostIt": {
+      "permissions": {
+        "setting": "open"
+      },
+      "lambdaFunction": "updatePostIt"
+    },
+    "/setUSB": {
+      "permissions": {
+        "setting": "open"
+      },
+      "lambdaFunction": "updateUSB"
+    },
+    "/stopInst": {
+      "permissions": {
+        "setting": "open"
+      },
+      "lambdaFunction": "stopInstanceforUser"
+    },
+    "/checkInstAutopsy": {
+      "name": "/checkInstAutopsy",
+      "lambdaFunction": "checkInstanceAutopsy",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/checkUserAuth": {
+      "name": "/checkUserAuth",
+      "lambdaFunction": "checkUserAuth",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
