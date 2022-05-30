@@ -17,7 +17,7 @@ def handler(event, context):
 
   
   inst_id = response['Item']['inst_id']
-  
+
   running_instances = ec2.instances.filter(InstanceIds=[inst_id])
     
   

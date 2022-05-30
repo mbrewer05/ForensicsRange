@@ -19,11 +19,11 @@
       "function": {
         "requestInstInfo": {
           "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
-          "s3Key": "amplify-builds/requestInstInfo-46747a78585447544777-build.zip"
+          "s3Key": "amplify-builds/requestInstInfo-31644962646d4148516a-build.zip"
         },
         "launchInstanceFromTemplate": {
           "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
-          "s3Key": "amplify-builds/launchInstanceFromTemplate-786370634e6774665a7a-build.zip"
+          "s3Key": "amplify-builds/launchInstanceFromTemplate-32465746446e52304c63-build.zip"
         },
         "updateUSB": {
           "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
@@ -35,7 +35,15 @@
         },
         "stopInstanceforUser": {
           "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
-          "s3Key": "amplify-builds/stopInstanceforUser-762f38686955362b2f52-build.zip"
+          "s3Key": "amplify-builds/stopInstanceforUser-437070724c5453396b2b-build.zip"
+        },
+        "checkInstanceAutopsy": {
+          "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
+          "s3Key": "amplify-builds/checkInstanceAutopsy-516b6a5a2f446b4d4f52-build.zip"
+        },
+        "checkUserAuth": {
+          "deploymentBucketName": "amplify-forensicsrange-dev-141930-deployment",
+          "s3Key": "amplify-builds/checkUserAuth-646f4977543976636b4e-build.zip"
         }
       }
     }

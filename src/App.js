@@ -36,7 +36,8 @@ function App() {
             const requestInfo = {
             headers: { Authorization: token }
             }
-            API.get('forensicsrangeapi', '/checkCurrentUser', requestInfo).then(function(data){
+            console.log(requestInfo)
+            API.get('forensicsrangeapi', '/checkUserAuth', requestInfo).then(function(data){
                 console.log( data )
                 if (data.authorization_status === "true"){
                     setAuthenicated(true);
