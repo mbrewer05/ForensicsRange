@@ -29,10 +29,9 @@ function App() {
             const token = user.signInUserSession.idToken.jwtToken
 
             const requestInfo = {
-            headers: { Authorization: token } //email?
+            headers: { Authorization: token }
             }
             API.get('forensicsrangeapi', '/checkUserAuth', requestInfo).then(function(data){
-                console.log( data ) // GET RID OF LATER
                 if (data.authorization_status === "true"){
                     setAuthenicated(true);
                 }
