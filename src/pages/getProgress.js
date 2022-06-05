@@ -1,10 +1,17 @@
 // import React from 'react'
-import { Auth } from 'aws-amplify';
+import { API, Auth } from 'aws-amplify';
 import DynamoDB  from 'aws-sdk/clients/dynamodb';
 
 export async function getProgress(callback){
     //See Progress.js for specifics on the index's
-    let progressArray = [0,0,0];
+    let progressArray = [0,0,0,0];
+
+    //Check to see if autopsy is running
+    const user = await Auth.currentAuthenticatedUser();
+    const token = user.signInUserSession.idToken.jwtToken;
+    
+    const requestInfo = {headers: { Authorization: token }};
+    const autopsy_data = await API.get('forensicsrangeapi', '/checkInstAutopsy', requestInfo);
 
     let userInfo = await Auth.currentUserInfo();
     var params = {
@@ -14,11 +21,10 @@ export async function getProgress(callback){
             "#user":"user-email"
         },
         ExpressionAttributeValues: {
-            ":name" : {"S" : (userInfo['username'])}
+            ":name" : {"S" : (userInfo['attributes']['email'])}
         }
     }
     let creds = await Auth.currentCredentials();
-
     const db = new DynamoDB({
         region: "us-west-2",
         credentials: Auth.essentialCredentials(creds)
@@ -41,6 +47,10 @@ export async function getProgress(callback){
             if(hasUSB){
                 progressArray[2] = 1;
                 pNum+= 29;
+            }
+            if (autopsy_data.includes("autopsy")){
+                progressArray[3] = 1;
+                pNum += 29;
             }
             progressArray[0] = pNum;
             callback(progressArray);

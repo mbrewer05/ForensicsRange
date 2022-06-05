@@ -12,6 +12,7 @@ class Progress extends React.Component {
     curProgress = 0;
     postItFound = 0;
     usbFound = 0;
+    autopsyRunning = 0;
     foundFilesCount =0;
     //Use a list to keep track of the filenames, indexed with the same list for if values are found
     //  Figure out a way to use a hashtable please
@@ -95,6 +96,9 @@ class Progress extends React.Component {
 
         this.usbFound = retProg[2];
         this.setState({usbFound : retProg[2]});
+
+        this.autopsyRunning = retProg[3];
+        this.setState({autopsyRunning: retProg[3]})
     }
     
     //Called when a new file is found, so increment by 3
@@ -163,6 +167,7 @@ class Progress extends React.Component {
                     <ul class="list">
                     <li class="list-item">{this.postItFound ? <div className = "task-finished">Postit has been found!</div> : <div className = "task-incomplete">HIDDEN</div>}</li>
                     <li class="list-item">{this.usbFound ? <div className = "task-finished">USB was located</div> : <div className = "task-incomplete">HIDDEN</div>}</li>
+                    <li class="list-item">{this.autopsyRunning ? <div className = "task-finished">Autopsy is running on instance!</div> : <div className = "task-incomplete">HIDDEN</div>}</li>
                     </ul>
                 <h3>Investigation</h3>
                 <p>
