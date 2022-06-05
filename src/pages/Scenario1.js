@@ -94,6 +94,7 @@ class Scenario1 extends React.Component {
         const data = await API.get('forensicsrangeapi', '/setPostIt', requestInfo)
         console.log({ data })
     }
+    
     async function foundUSB() {
       const user = await Auth.currentAuthenticatedUser()
       const token = user.signInUserSession.idToken.jwtToken
