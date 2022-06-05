@@ -119,6 +119,17 @@
   opacity: 0.6;
   cursor: not-allowed;
 }
+.task-finished{
+  color: green;
+}
+
+.task-incomplete{
+  color: #b13027;
+}
+
+.found-file{
+  color: #005c29;
+}
 
 .progress {
   display: flex;
@@ -147,6 +158,11 @@
   transition-delay:0s;
 }
 
+ul {
+  padding-left: 0;
+  display: table;
+  margin: 0 auto;
+}
 
 .stopBtn {
   margin: 20px;

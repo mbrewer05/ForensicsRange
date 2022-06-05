@@ -1,97 +1,111 @@
 // import React from 'react'
-import { API, Auth } from 'aws-amplify';
+import { Auth } from 'aws-amplify';
 import DynamoDB  from 'aws-sdk/clients/dynamodb';
 
-var status = 0;
-export function getProgress(){
-    var status =0;
-    // //const token = user.signInUserSession.idToken.jwtToken
-    // const db = new DynamoDB({
-    //     region:"us-west-2",
-    //     credentials:Auth.essentialCredentials(credentials)
+export async function getProgress(callback){
+    //See Progress.js for specifics on the index's
+    let progressArray = [0,0,0];
 
-    // });
-    //Grab logged in user credentials
-    // var user = '';
-    // Auth.currentUserInfo().then(response => {
-    //     user = JSON.stringify(response['username']);
-    //     console.log(user);
-    // });
-    // console.log("Out");
-    // console.log(user);
-    // let user;
-    // var params;
-
-    // Auth.currentUserInfo().then(response => {
-    //     console.log(JSON.stringify(response['username']));
-    //     user = JSON.stringify(response['username']);
-    //     // return JSON.stringify(response['username']);
-
-        
-    // });
-
-
-    // var pleaseWork = Auth.currentUserInfo();
-    // console.log(pleaseWork);
-    // console.log(JSON.stringify(pleaseWork['username']));
-    // console.log(JSON.stringify(pleaseWork));
-    // var imBegging = JSON.stringify(pleaseWork['username']);
-    // var username =user;
-    // console.log(user);
-
-    // var params = {
-    //     TableName: 'forensics-users-test',
-    //     KeyConditionExpression: "#user = :name",
-    //     ExpressionAttributeNames: {
-    //         "#user":"user-email"
-    //     },
-    //     ExpressionAttributeValues: {
-    //         ":name" : {"S" : user}
-    //     }
-
-
-    // }
-    Auth.currentUserInfo().then(response => {
-        var params = {
-            TableName: 'forensics-users-test',
-            KeyConditionExpression: "#user = :name",
-            ExpressionAttributeNames: {
-                "#user":"user-email"
-            },
-            ExpressionAttributeValues: {
-                ":name" : {"S" : (response['username'])}
-            }
-    
-    
+    let userInfo = await Auth.currentUserInfo();
+    var params = {
+        TableName: 'forensics-users-test',
+        KeyConditionExpression: "#user = :name",
+        ExpressionAttributeNames: {
+            "#user":"user-email"
+        },
+        ExpressionAttributeValues: {
+            ":name" : {"S" : (userInfo['username'])}
         }
-        console.log(params);
-        Auth.currentCredentials()
-            .then(credentials => {
-            const db= new DynamoDB({
-                region: "us-west-2",
-                credentials: Auth.essentialCredentials(credentials)
-            });
-            db.query(params, function(err, data) {
-                if (err) {
-                console.log(err);
-                return null;
-                } else {
-            
-                console.log('Got data');
-                console.log(data);
+    }
+    let creds = await Auth.currentCredentials();
 
-                // for (var i in data['Items']) {
-                //     // read the values from the dynamodb JSON packet
-                //     var tempRead = parseFloat(data['Items'][i]['temperature']['N']);
-                //     var timeStamp = parseInt(data['Items'][i]['ts']['N']);
-                //     var timeRead = new Date(timeStamp);	
-                //     console.log(timeRead);
-                //     console.log(tempRead);        
-                //     }
-                }     
-            })      
-        });
-    })
+    const db = new DynamoDB({
+        region: "us-west-2",
+        credentials: Auth.essentialCredentials(creds)
+    });
+    
+    db.query(params, function(err, dbData) {
+        let pNum = 0; //Total progress out of 100
 
-    return status += 10;
+        if (err) {
+        console.log(err);
+        return null;
+        } else {      
+            var items = (dbData['Items']);
+            var hasPostIt = (items['0']['has_post_it']['BOOL']);
+            var hasUSB = (items['0']['has_usb']['BOOL']);
+            if(hasPostIt){
+                progressArray[1] = 1;
+                pNum += 29;
+            }
+            if(hasUSB){
+                progressArray[2] = 1;
+                pNum+= 29;
+            }
+            progressArray[0] = pNum;
+            callback(progressArray);
+        }     
+    }) 
 }
+
+
+// export function getProgress(){
+//     var pNum =0;
+//     var status;
+    
+
+//     status = Auth.currentUserInfo().then(async response => {
+//         var params = {
+//             TableName: 'forensics-users-test',
+//             KeyConditionExpression: "#user = :name",
+//             ExpressionAttributeNames: {
+//                 "#user":"user-email"
+//             },
+//             ExpressionAttributeValues: {
+//                 ":name" : {"S" : (response['username'])}
+//             }
+    
+    
+//         }
+//         // console.log(params);
+//         const credentials = await Auth.currentCredentials();
+//         const db = new DynamoDB({
+//             region: "us-west-2",
+//             credentials: Auth.essentialCredentials(credentials)
+//         });
+//         db.query(params, function (err, dbData) {
+//             if (err) {
+//                 console.log(err);
+//                 return null;
+//             } else {
+//                 console.log(dbData);
+//                 var items = (dbData['Items']);
+//                 var hasPostIt = (items['0']['has_post_it']['BOOL']);
+//                 var hasUSB = (items['0']['has_usb']['BOOL']);
+//                 if (hasPostIt) {
+//                     pNum += 50;
+//                     console.log("USER HAS POST IT");
+//                 } else {
+//                     console.log("USER DOES NOT HAVE POST IT");
+//                 }
+//                 if (hasUSB) {
+//                     pNum += 50;
+//                     console.log("USER HAS USB");
+//                 } else {
+//                     console.log("USER DOES NOT HAVE USB");
+//                 }
+
+//                 console.log("Status is " + pNum);
+//                 return dbData;
+//             }
+//         });
+//     });
+
+
+//     status.then(function(val) {
+//         console.log(val);
+//     });
+
+//     console.log(status);
+//     return status;
+// }

@@ -5,6 +5,8 @@
   "dependencies": {
     "@aws-amplify/api": "^4.0.0",
     "@aws-amplify/ui-react": "^1.2.0",
+    "@aws-sdk/client-dynamodb": "^3.99.0",
+    "@aws-sdk/lib-dynamodb": "^3.87.0",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
